@@ -67,7 +67,9 @@ create table lineas_factura(
 create or replace procedure alquilar(arg_NIF_cliente varchar,
   arg_matricula varchar, arg_fecha_ini date, arg_fecha_fin date) is
 begin
-  null;
+  if arg_fecha_ini>arg_fecha_fin then
+    rollback;
+    raise_application_error(-20003, El numero de dias sera mayor que cero);
 end;
 /
 
